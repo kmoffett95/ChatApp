@@ -1,6 +1,6 @@
 import java.io.IOException;
 import java.net.*;
-
+import javax.swing.JTextArea;
 /*
     The class implements the Runnable interface.
     This means we must define a run method.
@@ -8,14 +8,15 @@ import java.net.*;
 */
 public class MulticastReceiver implements Runnable
 {
-    public boolean keepListening = true;
     private int multicastSocketPort;
     private InetAddress hostAddress;
+	private JTextArea textArea;
 
     // Constructor
-    public MulticastReceiver(int port, String hostAddress)
+    public MulticastReceiver(int port, String hostAddress, JTextArea textArea)
     {
         this.multicastSocketPort = port;
+        this.textArea = textArea;
         try {
             this.hostAddress = InetAddress.getByName(hostAddress);
         }
@@ -38,11 +39,11 @@ public class MulticastReceiver implements Runnable
         String msg = "";
         try {
             MulticastSocket socket = getSocketConnection();
-            while (this.keepListening) {
+            while (true) {
                 inPacket = new DatagramPacket(inBuf, inBuf.length);
                 socket.receive(inPacket);
                 msg = new String(inBuf, 0, inPacket.getLength());
-                System.out.println(msg);
+                this.textArea.append(msg + "\n");
             }
         }
         catch (IOException e) {
