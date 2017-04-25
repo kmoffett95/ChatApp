@@ -4,7 +4,9 @@ import javax.swing.JTextArea;
 /*
     The class implements the Runnable interface.
     This means we must define a run method.
-    It can be later used to be run as part of a thread
+    It can be later used to be run as part of a thread.
+    When a message is received into the multicast group,
+    the message is appended to the JTextArea that it is handed.
 */
 public class MulticastReceiver implements Runnable
 {

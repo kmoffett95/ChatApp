@@ -2,9 +2,7 @@ import java.io.IOException;
 import java.net.*;
 import java.util.Scanner;
 /*
-    The class implements the Runnable interface.
-    This means we must define a run method.
-    It can be later used to be run as part of a thread
+    The class is used to send messages into a multicast group
 */
 public class MulticastSender
 {

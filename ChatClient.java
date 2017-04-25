@@ -61,9 +61,16 @@ public class ChatClient
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+	/*
+		To run the main method, a name is provided as an argument
+		e.g. java ChatClient YourName
+		A GUI is displayed displaying the received message.
+		The program terminates when the GUI is closed.
+	*/
     public static void main(String [] args)
     {
-    	ChatClient client = new ChatClient(8888, "224.2.2.3", args[0]);
+		String name = args.length == 0 ? "Default Name" : args[0];
+    	ChatClient client = new ChatClient(8888, "224.2.2.3", name);
 
 	    Thread receiverThread = new Thread(client.receiver);
         receiverThread.start();
